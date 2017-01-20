@@ -22,5 +22,89 @@ namespace Fileviewer.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int columnStartsWith {
+            get {
+                return ((int)(this["columnStartsWith"]));
+            }
+            set {
+                this["columnStartsWith"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int rowStartsWith {
+            get {
+                return ((int)(this["rowStartsWith"]));
+            }
+            set {
+                this["rowStartsWith"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Courier New, 8.25pt")]
+        public global::System.Drawing.Font defaultFont {
+            get {
+                return ((global::System.Drawing.Font)(this["defaultFont"]));
+            }
+            set {
+                this["defaultFont"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color defaultFontColor {
+            get {
+                return ((global::System.Drawing.Color)(this["defaultFontColor"]));
+            }
+            set {
+                this["defaultFontColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
+        public global::System.Drawing.Color backgroundColor {
+            get {
+                return ((global::System.Drawing.Color)(this["backgroundColor"]));
+            }
+            set {
+                this["backgroundColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Yellow")]
+        public global::System.Drawing.Color matchColor {
+            get {
+                return ((global::System.Drawing.Color)(this["matchColor"]));
+            }
+            set {
+                this["matchColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("---===***SFS-BASE64-ENCODED***===---")]
+        public string base64Header {
+            get {
+                return ((string)(this["base64Header"]));
+            }
+            set {
+                this["base64Header"] = value;
+            }
+        }
     }
 }

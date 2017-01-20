@@ -12,11 +12,16 @@ namespace Fileviewer
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
+            string fileToOpen = "";
+            if (args.Length > 0)
+            {
+                fileToOpen = args[0];
+            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new EditorView(new EditorModel()));
+            Application.Run(new EditorView(new EditorModel(), fileToOpen));
         }
     }
 }

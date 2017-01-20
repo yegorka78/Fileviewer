@@ -43,7 +43,9 @@
             this.tsmiView = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFormat = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiUnformat = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiAdvanced = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statStrMain = new System.Windows.Forms.StatusStrip();
             this.tsslNumChar = new System.Windows.Forms.ToolStripStatusLabel();
@@ -59,8 +61,20 @@
             this.tcMain = new System.Windows.Forms.TabControl();
             this.ofdMain = new System.Windows.Forms.OpenFileDialog();
             this.sfdMain = new System.Windows.Forms.SaveFileDialog();
+            this.tsMain = new System.Windows.Forms.ToolStrip();
+            this.tsbOpen = new System.Windows.Forms.ToolStripButton();
+            this.tsbSave = new System.Windows.Forms.ToolStripButton();
+            this.tss0 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbCopy = new System.Windows.Forms.ToolStripButton();
+            this.tsbPaste = new System.Windows.Forms.ToolStripButton();
+            this.tsbSearch = new System.Windows.Forms.ToolStripButton();
+            this.tss1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbFormat = new System.Windows.Forms.ToolStripButton();
+            this.tsbUnformat = new System.Windows.Forms.ToolStripButton();
+            this.tsbParagraphMarker = new System.Windows.Forms.ToolStripButton();
             this.mstrpMain.SuspendLayout();
             this.statStrMain.SuspendLayout();
+            this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // mstrpMain
@@ -69,7 +83,7 @@
             this.mstrpMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiFile,
             this.tsmiView,
-            this.aboutToolStripMenuItem});
+            this.tsmiAdvanced});
             this.mstrpMain.Location = new System.Drawing.Point(0, 0);
             this.mstrpMain.Name = "mstrpMain";
             this.mstrpMain.Size = new System.Drawing.Size(1074, 24);
@@ -174,35 +188,55 @@
             // 
             // tsmiFormat
             // 
+            this.tsmiFormat.Image = global::Fileviewer.Properties.Resources.format;
             this.tsmiFormat.Name = "tsmiFormat";
-            this.tsmiFormat.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.F)));
+            this.tsmiFormat.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.tsmiFormat.Size = new System.Drawing.Size(242, 22);
             this.tsmiFormat.Text = "format content";
             this.tsmiFormat.Click += new System.EventHandler(this.tsmiFormat_Click);
             // 
             // tsmiUnformat
             // 
+            this.tsmiUnformat.Image = global::Fileviewer.Properties.Resources.undo;
             this.tsmiUnformat.Name = "tsmiUnformat";
             this.tsmiUnformat.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.U)));
+            | System.Windows.Forms.Keys.D)));
             this.tsmiUnformat.Size = new System.Drawing.Size(242, 22);
             this.tsmiUnformat.Text = "unformat content";
             this.tsmiUnformat.Click += new System.EventHandler(this.tsmiUnformat_Click);
             // 
-            // aboutToolStripMenuItem
+            // tsmiAdvanced
             // 
-            this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiAdvanced.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiSettings,
+            this.tsmiHelp});
+            this.tsmiAdvanced.ForeColor = System.Drawing.Color.Black;
+            this.tsmiAdvanced.Name = "tsmiAdvanced";
+            this.tsmiAdvanced.Size = new System.Drawing.Size(70, 20);
+            this.tsmiAdvanced.Text = "advanced";
+            // 
+            // tsmiSettings
+            // 
+            this.tsmiSettings.Image = global::Fileviewer.Properties.Resources.settings;
+            this.tsmiSettings.Name = "tsmiSettings";
+            this.tsmiSettings.Size = new System.Drawing.Size(152, 22);
+            this.tsmiSettings.Text = "settings";
+            this.tsmiSettings.Click += new System.EventHandler(this.tsmiSettings_Click);
+            // 
+            // tsmiHelp
+            // 
+            this.tsmiHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiAbout});
-            this.aboutToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
-            this.aboutToolStripMenuItem.Text = "help";
+            this.tsmiHelp.Image = global::Fileviewer.Properties.Resources.Help;
+            this.tsmiHelp.Name = "tsmiHelp";
+            this.tsmiHelp.Size = new System.Drawing.Size(152, 22);
+            this.tsmiHelp.Text = "help";
             // 
             // tsmiAbout
             // 
+            this.tsmiAbout.Image = global::Fileviewer.Properties.Resources.information;
             this.tsmiAbout.Name = "tsmiAbout";
-            this.tsmiAbout.Size = new System.Drawing.Size(105, 22);
+            this.tsmiAbout.Size = new System.Drawing.Size(152, 22);
             this.tsmiAbout.Text = "about";
             this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
@@ -301,15 +335,16 @@
             this.tcMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tcMain.Location = new System.Drawing.Point(0, 27);
+            this.tcMain.Location = new System.Drawing.Point(0, 52);
             this.tcMain.Name = "tcMain";
             this.tcMain.SelectedIndex = 0;
             this.tcMain.ShowToolTips = true;
-            this.tcMain.Size = new System.Drawing.Size(1074, 512);
+            this.tcMain.Size = new System.Drawing.Size(1074, 487);
             this.tcMain.TabIndex = 2;
             this.tcMain.SelectedIndexChanged += new System.EventHandler(this.tcMain_SelectedIndexChanged);
             this.tcMain.DragDrop += new System.Windows.Forms.DragEventHandler(this.tcMain_DragDrop);
             this.tcMain.DragEnter += new System.Windows.Forms.DragEventHandler(this.tcMain_DragEnter);
+            this.tcMain.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tcMain_KeyDown);
             // 
             // ofdMain
             // 
@@ -320,6 +355,115 @@
             // 
             this.sfdMain.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdMain_FileOk);
             // 
+            // tsMain
+            // 
+            this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbOpen,
+            this.tsbSave,
+            this.tss0,
+            this.tsbCopy,
+            this.tsbPaste,
+            this.tsbSearch,
+            this.tss1,
+            this.tsbFormat,
+            this.tsbUnformat,
+            this.tsbParagraphMarker});
+            this.tsMain.Location = new System.Drawing.Point(0, 24);
+            this.tsMain.Name = "tsMain";
+            this.tsMain.Size = new System.Drawing.Size(1074, 25);
+            this.tsMain.TabIndex = 3;
+            this.tsMain.Text = "toolStrip1";
+            // 
+            // tsbOpen
+            // 
+            this.tsbOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbOpen.Image = global::Fileviewer.Properties.Resources.open;
+            this.tsbOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbOpen.Name = "tsbOpen";
+            this.tsbOpen.Size = new System.Drawing.Size(23, 22);
+            this.tsbOpen.Text = "&open";
+            this.tsbOpen.Click += new System.EventHandler(this.tsbOpen_Click);
+            // 
+            // tsbSave
+            // 
+            this.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSave.Image = global::Fileviewer.Properties.Resources.save;
+            this.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSave.Name = "tsbSave";
+            this.tsbSave.Size = new System.Drawing.Size(23, 22);
+            this.tsbSave.Text = "&save";
+            this.tsbSave.Click += new System.EventHandler(this.tsbSave_Click);
+            // 
+            // tss0
+            // 
+            this.tss0.Name = "tss0";
+            this.tss0.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsbCopy
+            // 
+            this.tsbCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbCopy.Image = ((System.Drawing.Image)(resources.GetObject("tsbCopy.Image")));
+            this.tsbCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbCopy.Name = "tsbCopy";
+            this.tsbCopy.Size = new System.Drawing.Size(23, 22);
+            this.tsbCopy.Text = "&copy";
+            this.tsbCopy.Click += new System.EventHandler(this.tsbCopy_Click);
+            // 
+            // tsbPaste
+            // 
+            this.tsbPaste.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbPaste.Image = ((System.Drawing.Image)(resources.GetObject("tsbPaste.Image")));
+            this.tsbPaste.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPaste.Name = "tsbPaste";
+            this.tsbPaste.Size = new System.Drawing.Size(23, 22);
+            this.tsbPaste.Text = "&paste";
+            this.tsbPaste.Click += new System.EventHandler(this.tsbPaste_Click);
+            // 
+            // tsbSearch
+            // 
+            this.tsbSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSearch.Image = global::Fileviewer.Properties.Resources.search;
+            this.tsbSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSearch.Name = "tsbSearch";
+            this.tsbSearch.Size = new System.Drawing.Size(23, 22);
+            this.tsbSearch.Text = "&search";
+            this.tsbSearch.Click += new System.EventHandler(this.tsbSearch_Click);
+            // 
+            // tss1
+            // 
+            this.tss1.Name = "tss1";
+            this.tss1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsbFormat
+            // 
+            this.tsbFormat.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbFormat.Image = global::Fileviewer.Properties.Resources.format;
+            this.tsbFormat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbFormat.Name = "tsbFormat";
+            this.tsbFormat.Size = new System.Drawing.Size(23, 22);
+            this.tsbFormat.Text = "&format";
+            this.tsbFormat.Click += new System.EventHandler(this.tsbFormat_Click);
+            // 
+            // tsbUnformat
+            // 
+            this.tsbUnformat.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbUnformat.Image = global::Fileviewer.Properties.Resources.undo;
+            this.tsbUnformat.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbUnformat.Name = "tsbUnformat";
+            this.tsbUnformat.Size = new System.Drawing.Size(23, 22);
+            this.tsbUnformat.Text = "&unformat";
+            this.tsbUnformat.Click += new System.EventHandler(this.tsbUnformat_Click);
+            // 
+            // tsbParagraphMarker
+            // 
+            this.tsbParagraphMarker.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbParagraphMarker.Image = global::Fileviewer.Properties.Resources.paragraphmarker;
+            this.tsbParagraphMarker.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbParagraphMarker.Name = "tsbParagraphMarker";
+            this.tsbParagraphMarker.Size = new System.Drawing.Size(23, 22);
+            this.tsbParagraphMarker.Text = "paragraph marker";
+            this.tsbParagraphMarker.Click += new System.EventHandler(this.tsbParagraphMarker_Click);
+            // 
             // EditorView
             // 
             this.AllowDrop = true;
@@ -327,6 +471,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1074, 564);
+            this.Controls.Add(this.tsMain);
             this.Controls.Add(this.tcMain);
             this.Controls.Add(this.statStrMain);
             this.Controls.Add(this.mstrpMain);
@@ -337,11 +482,14 @@
             this.Text = "Fileviewer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditorView_FormClosing);
             this.Load += new System.EventHandler(this.EditorView_Load);
+            this.Shown += new System.EventHandler(this.EditorView_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditorView_KeyDown);
             this.mstrpMain.ResumeLayout(false);
             this.mstrpMain.PerformLayout();
             this.statStrMain.ResumeLayout(false);
             this.statStrMain.PerformLayout();
+            this.tsMain.ResumeLayout(false);
+            this.tsMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -377,8 +525,21 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiClose;
         private System.Windows.Forms.OpenFileDialog ofdMain;
         private System.Windows.Forms.SaveFileDialog sfdMain;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAdvanced;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSettings;
+        private System.Windows.Forms.ToolStripMenuItem tsmiHelp;
         private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
+        private System.Windows.Forms.ToolStrip tsMain;
+        private System.Windows.Forms.ToolStripButton tsbOpen;
+        private System.Windows.Forms.ToolStripButton tsbSave;
+        private System.Windows.Forms.ToolStripSeparator tss0;
+        private System.Windows.Forms.ToolStripButton tsbCopy;
+        private System.Windows.Forms.ToolStripButton tsbPaste;
+        private System.Windows.Forms.ToolStripButton tsbSearch;
+        private System.Windows.Forms.ToolStripSeparator tss1;
+        private System.Windows.Forms.ToolStripButton tsbFormat;
+        private System.Windows.Forms.ToolStripButton tsbUnformat;
+        private System.Windows.Forms.ToolStripButton tsbParagraphMarker;
     }
 }
 

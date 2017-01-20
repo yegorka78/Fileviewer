@@ -41,18 +41,21 @@ namespace Fileviewer
             }
             foreach (Document file in editorModel.getFiles())
             {
-                TabPage tabPage = new TabPage();
-                tabPage.Tag = file;
-                tabPage.Text = file.getName();
-                tabPage.ToolTipText = file.getPath();
-                EditorContent rtbContent = new EditorContent(file.getContent());
-                rtbContent.SelectionChanged += EditorContent_SelectionChanged;
-                rtbContent.KeyDown += EditorContent_KeyPress;
-                rtbContent.DragEnter += dragEnterFile;
-                rtbContent.DragDrop += dragAndDropFile;
-                rtbContent.AllowDrop = true;
-                tabPage.Controls.Add(rtbContent);
-                tcMain.TabPages.Add(tabPage);
+                if (file != null)
+                {
+                    TabPage tabPage = new TabPage();
+                    tabPage.Tag = file;
+                    tabPage.Text = file.getName();
+                    tabPage.ToolTipText = file.getPath();
+                    EditorContent rtbContent = new EditorContent(file.getContent());
+                    rtbContent.SelectionChanged += EditorContent_SelectionChanged;
+                    rtbContent.KeyDown += EditorContent_KeyPress;
+                    rtbContent.DragEnter += dragEnterFile;
+                    rtbContent.DragDrop += dragAndDropFile;
+                    rtbContent.AllowDrop = true;
+                    tabPage.Controls.Add(rtbContent);
+                    tcMain.TabPages.Add(tabPage);
+                }
             }
         }
 
@@ -72,6 +75,14 @@ namespace Fileviewer
             updateWindowTitle();
             updateFileType();
             updateNumberOfCharacter();
+        }
+
+        public void newAnonymousFile()
+        {
+            if (Clipboard.GetText() is String)
+            {
+                editorModel.addFile(editorModel.analyzeFileType(new Document(String.Empty, "new file", Clipboard.GetText(), String.Empty)));
+            }
         }
 
         public void closeFile()
@@ -100,7 +111,13 @@ namespace Fileviewer
                 {
                     file.setPath(sfdMain.FileName);
                 }
-                editorModel.saveFile(file);
+                if (file.getPath() == String.Empty)
+                {
+                    sfdMain.ShowDialog();
+                    return;
+                }
+                file = editorModel.saveFile(file);
+                tcMain.SelectedTab.Text = file.getName();
             }
         }
 
@@ -132,6 +149,9 @@ namespace Fileviewer
             if (keyCode == Keys.Escape)
             {
                 resetBackColor();
+            } else if (keyCode == Keys.V && modifierKeys == Keys.Control)
+            {
+                newAnonymousFile();
             }
         }
 
@@ -143,8 +163,8 @@ namespace Fileviewer
 
         public void updateWindowTitle()
         {
-            Document file = tcMain.SelectedTab.Tag as Document;
-            editorView.Text = "Fileviewer -" + file.getName();
+                Document file = tcMain.SelectedTab.Tag as Document;
+                editorView.Text = "Fileviewer -" + file.getName();
         }
 
         public void updateNumberOfCharacter()
@@ -165,8 +185,8 @@ namespace Fileviewer
         {
             EditorContent rtbContent = tcMain.SelectedTab.Controls[0] as EditorContent;
             int position = rtbContent.SelectionStart;
-            tsslCurrRowVal.Text = rtbContent.GetLineFromCharIndex(position).ToString();
-            tsslCurrColVal.Text = (position - rtbContent.GetFirstCharIndexOfCurrentLine()).ToString();
+            tsslCurrRowVal.Text = (rtbContent.GetLineFromCharIndex(position) + Properties.Settings.Default.rowStartsWith).ToString();
+            tsslCurrColVal.Text = (position - rtbContent.GetFirstCharIndexOfCurrentLine() + Properties.Settings.Default.columnStartsWith).ToString();
         }
 
         private void EditorContent_SelectionChanged(object sender, EventArgs e)
@@ -206,6 +226,26 @@ namespace Fileviewer
                     ofdMain.FileName = name;
                     openFile();
                 }
+            }
+        }
+
+        public void paragraphMarker()
+        {
+            if (tcMain.TabPages.Count > 0)
+            {
+                EditorContent rtbContent = tcMain.SelectedTab.Controls[0] as EditorContent;
+                if (rtbContent.getParagraphMarkerStatus())
+                {
+                    rtbContent.setParagraphMarkerStatus(false);
+                }
+                else
+                {
+                    rtbContent.setParagraphMarkerStatus(true);
+                }
+                Document file = tcMain.SelectedTab.Tag as Document;
+                file.setContent(editorModel.insertParagraphMarkers(rtbContent.getParagraphMarkerStatus(), file.getContent()));
+                rtbContent.Text = file.getContent();
+                tcMain.SelectedTab.Tag = file;
             }
         }
     }

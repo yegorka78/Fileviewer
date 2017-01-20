@@ -82,11 +82,16 @@ namespace Fileviewer
             updateAllViews();
         }
 
-        public void saveFile(Document file)
+        public Document saveFile(Document file)
         {
-            System.IO.StreamWriter targetFile = new System.IO.StreamWriter(file.getPath());
-            targetFile.WriteLine(file.getContent());
-            targetFile.Close();
+            if (file.getPath() != String.Empty)
+            {
+                System.IO.StreamWriter targetFile = new System.IO.StreamWriter(file.getPath());
+                targetFile.WriteLine(file.getContent());
+                targetFile.Close();
+                file.setName(Path.GetFileName(file.getPath()));
+            }
+            return file;
         }
 
         public Document readFile(Document file)
@@ -125,21 +130,28 @@ namespace Fileviewer
 
         private Document formatXML(Document file)
         {
-            MemoryStream mStream = new MemoryStream();
-            XmlTextWriter writer = new XmlTextWriter(mStream, Encoding.Unicode);
-            XmlDocument document = new XmlDocument();
-            document.Load(file.getPath());
-            writer.Formatting = Formatting.Indented;
-            document.WriteContentTo(writer);
-            writer.Flush();
-            mStream.Flush();
-            mStream.Position = 0;
-            StreamReader sReader = new StreamReader(mStream);
-            String FormattedXML = sReader.ReadToEnd();
-            file.setContent(FormattedXML);
-            mStream.Close();
-            writer.Close();
-            return file;
+            try
+            {
+                MemoryStream mStream = new MemoryStream();
+                XmlTextWriter writer = new XmlTextWriter(mStream, Encoding.Unicode);
+                XmlDocument document = new XmlDocument();
+                document.Load(file.getPath());
+                writer.Formatting = Formatting.Indented;
+                document.WriteContentTo(writer);
+                writer.Flush();
+                mStream.Flush();
+                mStream.Position = 0;
+                StreamReader sReader = new StreamReader(mStream);
+                String FormattedXML = sReader.ReadToEnd();
+                file.setContent(FormattedXML);
+                mStream.Close();
+                writer.Close();
+                return file;
+            }
+            catch
+            {
+                return file;
+            }
         }
 
         private Document formatAnsix12(Document file)
@@ -209,8 +221,21 @@ namespace Fileviewer
             updateAllViews();
         }
 
+        private bool isBase64(Document file)
+        {
+            if (file.getContent().Contains(Properties.Settings.Default.base64Header))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public Document analyzeFileType(Document file)
         {
+            if (isBase64(file))
+            {
+                file.setContent(encodeBase64(file.getContent()));
+            }
             if (file.getContent() != String.Empty)
             {
                 if (isXML(file))
@@ -267,6 +292,47 @@ namespace Fileviewer
                 return true;
             }
             return false;
+        }
+
+        private String encodeBase64(String strBase64)
+        {
+            strBase64 = strBase64.Replace(Properties.Settings.Default.base64Header, String.Empty);
+            byte[] data = Convert.FromBase64String(strBase64);
+            return Encoding.UTF8.GetString(data);
+        }
+
+        public String insertParagraphMarkers(bool status, String content)
+        {
+            StringBuilder strBuilder = new StringBuilder();
+            if (status)
+            {
+                foreach (Char chr in content.ToCharArray())
+                {
+                    if (chr == (char)32)
+                    {
+                        strBuilder.Append((char)183);
+                    }
+                    else
+                    {
+                        strBuilder.Append(chr);
+                    }
+                }
+            }
+            else
+            {
+                foreach (Char chr in content.ToCharArray())
+                {
+                    if (chr == (char)183)
+                    {
+                        strBuilder.Append((char)32);
+                    }
+                    else
+                    {
+                        strBuilder.Append(chr);
+                    }
+                }
+            }
+            return strBuilder.ToString();
         }
 
     }

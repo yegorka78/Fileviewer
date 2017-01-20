@@ -50,7 +50,7 @@ namespace Fileviewer
         public void resetRtbContent()
         {
             rtbContent.SelectAll();
-            rtbContent.SelectionBackColor = Color.White;
+            rtbContent.SelectionBackColor = Properties.Settings.Default.backgroundColor;
         }
 
         public int searchInDocument(String term, int start, bool caseSensitive)
@@ -65,7 +65,7 @@ namespace Fileviewer
             {
                 start = indexToText + tbSearchString.Text.Length;
                 rtbContent.Select(indexToText, tbSearchString.Text.Length);
-                rtbContent.SelectionBackColor = Color.Yellow;
+                rtbContent.SelectionBackColor = Properties.Settings.Default.matchColor;
                 return indexToText;
             }
             return -1;

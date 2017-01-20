@@ -10,6 +10,8 @@ namespace Fileviewer
 {
     public class EditorContent : RichTextBox
     {
+        private bool paragraphMarkerStatus;
+
         public EditorContent(String text){
             Text = text;
             ReadOnly = true;
@@ -17,9 +19,20 @@ namespace Fileviewer
             Width = 200;
             ScrollBars = RichTextBoxScrollBars.Both;
             Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-            ForeColor = System.Drawing.Color.Black;
-            BackColor = System.Drawing.Color.White;
-            Font = new Font("Consolas", 10);
+            ForeColor = Properties.Settings.Default.defaultFontColor;
+            BackColor = Properties.Settings.Default.backgroundColor;
+            Font = Properties.Settings.Default.defaultFont;
+            paragraphMarkerStatus = false;
+        }
+
+        public bool getParagraphMarkerStatus()
+        {
+            return paragraphMarkerStatus;
+        }
+
+        public void setParagraphMarkerStatus(bool status)
+        {
+            paragraphMarkerStatus = status;
         }
     }
 }
