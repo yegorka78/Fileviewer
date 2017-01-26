@@ -30,6 +30,9 @@
         {
             this.tcSettings = new System.Windows.Forms.TabControl();
             this.tpGeneral = new System.Windows.Forms.TabPage();
+            this.gpHeaders = new System.Windows.Forms.GroupBox();
+            this.tbBase64Header = new System.Windows.Forms.TextBox();
+            this.lbBase64Header = new System.Windows.Forms.Label();
             this.gpCharCounter = new System.Windows.Forms.GroupBox();
             this.nudRowCounter = new System.Windows.Forms.NumericUpDown();
             this.lbCharCounterRow = new System.Windows.Forms.Label();
@@ -51,18 +54,15 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.cdMain = new System.Windows.Forms.ColorDialog();
             this.fdMain = new System.Windows.Forms.FontDialog();
-            this.gpHeaders = new System.Windows.Forms.GroupBox();
-            this.lbBase64Header = new System.Windows.Forms.Label();
-            this.tbBase64Header = new System.Windows.Forms.TextBox();
             this.tcSettings.SuspendLayout();
             this.tpGeneral.SuspendLayout();
+            this.gpHeaders.SuspendLayout();
             this.gpCharCounter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudRowCounter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudColCounter)).BeginInit();
             this.tpStyle.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gbFont.SuspendLayout();
-            this.gpHeaders.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcSettings
@@ -77,6 +77,7 @@
             // 
             // tpGeneral
             // 
+            this.tpGeneral.BackColor = System.Drawing.SystemColors.Control;
             this.tpGeneral.Controls.Add(this.gpHeaders);
             this.tpGeneral.Controls.Add(this.gpCharCounter);
             this.tpGeneral.Location = new System.Drawing.Point(4, 22);
@@ -85,7 +86,33 @@
             this.tpGeneral.Size = new System.Drawing.Size(372, 272);
             this.tpGeneral.TabIndex = 0;
             this.tpGeneral.Text = "general";
-            this.tpGeneral.UseVisualStyleBackColor = true;
+            // 
+            // gpHeaders
+            // 
+            this.gpHeaders.Controls.Add(this.tbBase64Header);
+            this.gpHeaders.Controls.Add(this.lbBase64Header);
+            this.gpHeaders.Location = new System.Drawing.Point(8, 98);
+            this.gpHeaders.Name = "gpHeaders";
+            this.gpHeaders.Size = new System.Drawing.Size(358, 54);
+            this.gpHeaders.TabIndex = 1;
+            this.gpHeaders.TabStop = false;
+            this.gpHeaders.Text = "headers";
+            // 
+            // tbBase64Header
+            // 
+            this.tbBase64Header.Location = new System.Drawing.Point(59, 19);
+            this.tbBase64Header.Name = "tbBase64Header";
+            this.tbBase64Header.Size = new System.Drawing.Size(293, 20);
+            this.tbBase64Header.TabIndex = 1;
+            // 
+            // lbBase64Header
+            // 
+            this.lbBase64Header.AutoSize = true;
+            this.lbBase64Header.Location = new System.Drawing.Point(6, 22);
+            this.lbBase64Header.Name = "lbBase64Header";
+            this.lbBase64Header.Size = new System.Drawing.Size(47, 13);
+            this.lbBase64Header.TabIndex = 0;
+            this.lbBase64Header.Text = "BASE64";
             // 
             // gpCharCounter
             // 
@@ -144,6 +171,7 @@
             // 
             // tpStyle
             // 
+            this.tpStyle.BackColor = System.Drawing.SystemColors.Control;
             this.tpStyle.Controls.Add(this.lbPreview);
             this.tpStyle.Controls.Add(this.groupBox1);
             this.tpStyle.Controls.Add(this.gbFont);
@@ -153,7 +181,6 @@
             this.tpStyle.Size = new System.Drawing.Size(372, 272);
             this.tpStyle.TabIndex = 1;
             this.tpStyle.Text = "style";
-            this.tpStyle.UseVisualStyleBackColor = true;
             // 
             // lbPreview
             // 
@@ -292,38 +319,11 @@
             // 
             this.fdMain.Apply += new System.EventHandler(this.fdMain_Apply);
             // 
-            // gpHeaders
-            // 
-            this.gpHeaders.Controls.Add(this.tbBase64Header);
-            this.gpHeaders.Controls.Add(this.lbBase64Header);
-            this.gpHeaders.Location = new System.Drawing.Point(8, 98);
-            this.gpHeaders.Name = "gpHeaders";
-            this.gpHeaders.Size = new System.Drawing.Size(358, 54);
-            this.gpHeaders.TabIndex = 1;
-            this.gpHeaders.TabStop = false;
-            this.gpHeaders.Text = "headers";
-            // 
-            // lbBase64Header
-            // 
-            this.lbBase64Header.AutoSize = true;
-            this.lbBase64Header.Location = new System.Drawing.Point(6, 22);
-            this.lbBase64Header.Name = "lbBase64Header";
-            this.lbBase64Header.Size = new System.Drawing.Size(47, 13);
-            this.lbBase64Header.TabIndex = 0;
-            this.lbBase64Header.Text = "BASE64";
-            // 
-            // tbBase64Header
-            // 
-            this.tbBase64Header.Location = new System.Drawing.Point(59, 19);
-            this.tbBase64Header.Name = "tbBase64Header";
-            this.tbBase64Header.Size = new System.Drawing.Size(293, 20);
-            this.tbBase64Header.TabIndex = 1;
-            // 
             // SettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(384, 340);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
@@ -337,6 +337,8 @@
             this.Load += new System.EventHandler(this.SettingsView_Load);
             this.tcSettings.ResumeLayout(false);
             this.tpGeneral.ResumeLayout(false);
+            this.gpHeaders.ResumeLayout(false);
+            this.gpHeaders.PerformLayout();
             this.gpCharCounter.ResumeLayout(false);
             this.gpCharCounter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudRowCounter)).EndInit();
@@ -344,8 +346,6 @@
             this.tpStyle.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.gbFont.ResumeLayout(false);
-            this.gpHeaders.ResumeLayout(false);
-            this.gpHeaders.PerformLayout();
             this.ResumeLayout(false);
 
         }
