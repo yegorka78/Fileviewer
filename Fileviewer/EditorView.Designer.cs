@@ -219,7 +219,7 @@
             // 
             this.tsmiSettings.Image = global::Fileviewer.Properties.Resources.settings;
             this.tsmiSettings.Name = "tsmiSettings";
-            this.tsmiSettings.Size = new System.Drawing.Size(152, 22);
+            this.tsmiSettings.Size = new System.Drawing.Size(115, 22);
             this.tsmiSettings.Text = "settings";
             this.tsmiSettings.Click += new System.EventHandler(this.tsmiSettings_Click);
             // 
@@ -229,14 +229,14 @@
             this.tsmiAbout});
             this.tsmiHelp.Image = global::Fileviewer.Properties.Resources.Help;
             this.tsmiHelp.Name = "tsmiHelp";
-            this.tsmiHelp.Size = new System.Drawing.Size(152, 22);
+            this.tsmiHelp.Size = new System.Drawing.Size(115, 22);
             this.tsmiHelp.Text = "help";
             // 
             // tsmiAbout
             // 
             this.tsmiAbout.Image = global::Fileviewer.Properties.Resources.information;
             this.tsmiAbout.Name = "tsmiAbout";
-            this.tsmiAbout.Size = new System.Drawing.Size(152, 22);
+            this.tsmiAbout.Size = new System.Drawing.Size(105, 22);
             this.tsmiAbout.Text = "about";
             this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
