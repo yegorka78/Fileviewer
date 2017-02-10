@@ -46,6 +46,7 @@ namespace Fileviewer
             Properties.Settings.Default.backgroundColor = lbBackgroundColor.BackColor;
             Properties.Settings.Default.matchColor = lbMatchColor.BackColor;
             Properties.Settings.Default.base64Header = tbBase64Header.Text;
+            Properties.Settings.Default.Save();
             view.Close();
         }
 

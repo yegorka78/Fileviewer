@@ -47,7 +47,7 @@ namespace Fileviewer
                     tabPage.Tag = file;
                     tabPage.Text = file.getName();
                     tabPage.ToolTipText = file.getPath();
-                    EditorContent rtbContent = new EditorContent(file.getContent());
+                    EditorContent rtbContent = new EditorContent(file.getContentVisible());
                     rtbContent.SelectionChanged += EditorContent_SelectionChanged;
                     rtbContent.KeyDown += EditorContent_KeyPress;
                     rtbContent.DragEnter += dragEnterFile;
@@ -243,10 +243,11 @@ namespace Fileviewer
                     rtbContent.setParagraphMarkerStatus(true);
                 }
                 Document file = tcMain.SelectedTab.Tag as Document;
-                file.setContent(editorModel.insertParagraphMarkers(rtbContent.getParagraphMarkerStatus(), file.getContent()));
-                rtbContent.Text = file.getContent();
+                file.setContentVisible(editorModel.insertParagraphMarkers(rtbContent.getParagraphMarkerStatus(), file.getContent()));
+                rtbContent.Text = file.getContentVisible();
                 tcMain.SelectedTab.Tag = file;
             }
         }
+
     }
 }

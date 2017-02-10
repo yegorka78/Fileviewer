@@ -86,7 +86,7 @@ namespace Fileviewer
         {
             if (file.getPath() != String.Empty)
             {
-                System.IO.StreamWriter targetFile = new System.IO.StreamWriter(file.getPath());
+                System.IO.StreamWriter targetFile = new System.IO.StreamWriter(file.getPath(), false, Encoding.UTF8);
                 targetFile.WriteLine(file.getContent());
                 targetFile.Close();
                 file.setName(Path.GetFileName(file.getPath()));
@@ -165,7 +165,7 @@ namespace Fileviewer
                     builder.Append(c);
                     if (c == separator)
                     {
-                        builder.Append((char)13);
+                        builder.Append("\r\n");
                     }
                 }
                 file.setContent(builder.ToString());
@@ -184,7 +184,7 @@ namespace Fileviewer
                 {
                     if (content[i - 1] != '?')
                     {
-                        builder.Append((char)13);
+                        builder.Append("\r\n");
                     }
                 }
             }
@@ -200,7 +200,7 @@ namespace Fileviewer
             {
                 if (i % 128 == 0 && i != 0)
                 {
-                    builder.Append((char)13);
+                    builder.Append("\r\n");
                 }
                 builder.Append(content[i]);
             }

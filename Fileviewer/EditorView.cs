@@ -217,5 +217,14 @@ namespace Fileviewer
                 editorViewController.openFile();
             }
         }
+
+        private void tsbGoTo_Click(object sender, EventArgs e)
+        {
+            if (tcMain.TabPages.Count > 0)
+            {
+                GoToView goToView = new GoToView(tcMain.SelectedTab.Controls[0] as EditorContent);
+                goToView.ShowDialog();
+            }
+        }
     }
 }

@@ -68,6 +68,7 @@
             this.tsbCopy = new System.Windows.Forms.ToolStripButton();
             this.tsbPaste = new System.Windows.Forms.ToolStripButton();
             this.tsbSearch = new System.Windows.Forms.ToolStripButton();
+            this.tsbGoTo = new System.Windows.Forms.ToolStripButton();
             this.tss1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbUnformat = new System.Windows.Forms.ToolStripButton();
@@ -364,6 +365,7 @@
             this.tsbCopy,
             this.tsbPaste,
             this.tsbSearch,
+            this.tsbGoTo,
             this.tss1,
             this.tsbFormat,
             this.tsbUnformat,
@@ -428,6 +430,16 @@
             this.tsbSearch.Size = new System.Drawing.Size(23, 22);
             this.tsbSearch.Text = "&search";
             this.tsbSearch.Click += new System.EventHandler(this.tsbSearch_Click);
+            // 
+            // tsbGoTo
+            // 
+            this.tsbGoTo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbGoTo.Image = global::Fileviewer.Properties.Resources._goto;
+            this.tsbGoTo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbGoTo.Name = "tsbGoTo";
+            this.tsbGoTo.Size = new System.Drawing.Size(23, 22);
+            this.tsbGoTo.Text = "go to";
+            this.tsbGoTo.Click += new System.EventHandler(this.tsbGoTo_Click);
             // 
             // tss1
             // 
@@ -540,6 +552,7 @@
         private System.Windows.Forms.ToolStripButton tsbFormat;
         private System.Windows.Forms.ToolStripButton tsbUnformat;
         private System.Windows.Forms.ToolStripButton tsbParagraphMarker;
+        private System.Windows.Forms.ToolStripButton tsbGoTo;
     }
 }
 

@@ -10,3 +10,4 @@ d:\userdata\wafl\my documents\visual studio 2015\Projects\Fileviewer\Fileviewer\
 d:\userdata\wafl\my documents\visual studio 2015\Projects\Fileviewer\Fileviewer\obj\Debug\Fileviewer.AboutView.resources
 d:\userdata\wafl\my documents\visual studio 2015\Projects\Fileviewer\Fileviewer\obj\Debug\Fileviewer.SearchView.resources
 d:\userdata\wafl\my documents\visual studio 2015\Projects\Fileviewer\Fileviewer\obj\Debug\Fileviewer.SettingsView.resources
+d:\userdata\wafl\my documents\visual studio 2015\Projects\Fileviewer\Fileviewer\obj\Debug\Fileviewer.GoToView.resources

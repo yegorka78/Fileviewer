@@ -31,7 +31,9 @@
             this.lbVersion = new System.Windows.Forms.Label();
             this.lbDeveloper = new System.Windows.Forms.Label();
             this.pbIcon = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lbVersion
@@ -42,7 +44,7 @@
             this.lbVersion.Name = "lbVersion";
             this.lbVersion.Size = new System.Drawing.Size(85, 16);
             this.lbVersion.TabIndex = 0;
-            this.lbVersion.Text = "version: 1.1.0";
+            this.lbVersion.Text = "version: 1.1.1";
             // 
             // lbDeveloper
             // 
@@ -63,12 +65,23 @@
             this.pbIcon.TabIndex = 2;
             this.pbIcon.TabStop = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Fileviewer.Properties.Resources.logo_sfs;
+            this.pictureBox1.Location = new System.Drawing.Point(98, 22);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(80, 80);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
             // AboutView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(193, 184);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pbIcon);
             this.Controls.Add(this.lbDeveloper);
             this.Controls.Add(this.lbVersion);
@@ -84,6 +97,7 @@
             this.Text = "about";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AboutView_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -94,5 +108,6 @@
         private System.Windows.Forms.Label lbVersion;
         private System.Windows.Forms.Label lbDeveloper;
         private System.Windows.Forms.PictureBox pbIcon;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

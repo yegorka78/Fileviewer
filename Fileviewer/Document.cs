@@ -11,6 +11,7 @@ namespace Fileviewer
         private String path;
         private String name;
         private String content;
+        private String contentVisible;
         private String type;
 
         public Document(String path, String name, String content, String type)
@@ -18,6 +19,7 @@ namespace Fileviewer
             this.path = path;
             this.name = name;
             this.content = content;
+            this.contentVisible = content;
             this.type = type;
         }
 
@@ -49,6 +51,7 @@ namespace Fileviewer
         public void setContent(String content)
         {
             this.content = content;
+            this.contentVisible = content;
         }
 
         public String getType()
@@ -59,6 +62,16 @@ namespace Fileviewer
         public void setType(String type)
         {
             this.type = type;
+        }
+
+        public String getContentVisible()
+        {
+            return contentVisible;
+        }
+
+        public void setContentVisible(String contentVisible)
+        {
+            this.contentVisible = contentVisible;
         }
     }
 }

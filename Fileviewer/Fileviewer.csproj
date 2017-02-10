@@ -82,6 +82,13 @@
     </Compile>
     <Compile Include="EditorViewController.cs" />
     <Compile Include="Document.cs" />
+    <Compile Include="GoToView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GoToView.Designer.cs">
+      <DependentUpon>GoToView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GoToViewController.cs" />
     <Compile Include="IView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,6 +111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditorView.resx">
       <DependentUpon>EditorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GoToView.resx">
+      <DependentUpon>GoToView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -181,6 +191,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\goto.png" />
+    <None Include="Resources\logo_sfs.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
