@@ -222,7 +222,20 @@ namespace Fileviewer
         {
             if (tcMain.TabPages.Count > 0)
             {
-                GoToView goToView = new GoToView(tcMain.SelectedTab.Controls[0] as EditorContent);
+                EditorContent rtbContent = tcMain.SelectedTab.Controls[0] as EditorContent;
+                rtbContent.Focus();
+                GoToView goToView = new GoToView(rtbContent);
+                goToView.ShowDialog();
+            }
+        }
+
+        private void goToIndexToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (tcMain.TabPages.Count > 0)
+            {
+                EditorContent rtbContent = tcMain.SelectedTab.Controls[0] as EditorContent;
+                rtbContent.Focus();
+                GoToView goToView = new GoToView(rtbContent);
                 goToView.ShowDialog();
             }
         }

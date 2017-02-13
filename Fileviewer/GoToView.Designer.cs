@@ -99,6 +99,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "GoToView";
+            this.Load += new System.EventHandler(this.GoToView_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GoToView_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.nudCol)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRow)).EndInit();

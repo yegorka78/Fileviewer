@@ -73,6 +73,7 @@
             this.tsbFormat = new System.Windows.Forms.ToolStripButton();
             this.tsbUnformat = new System.Windows.Forms.ToolStripButton();
             this.tsbParagraphMarker = new System.Windows.Forms.ToolStripButton();
+            this.goToIndexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mstrpMain.SuspendLayout();
             this.statStrMain.SuspendLayout();
             this.tsMain.SuspendLayout();
@@ -98,6 +99,7 @@
             this.tsmiSave,
             this.tsmiSpacer1,
             this.tsmiSearch,
+            this.goToIndexToolStripMenuItem,
             this.tsmiSpacer2,
             this.tsmiCloseCurrFile,
             this.tsmiClose});
@@ -476,6 +478,15 @@
             this.tsbParagraphMarker.Text = "paragraph marker";
             this.tsbParagraphMarker.Click += new System.EventHandler(this.tsbParagraphMarker_Click);
             // 
+            // goToIndexToolStripMenuItem
+            // 
+            this.goToIndexToolStripMenuItem.Image = global::Fileviewer.Properties.Resources._goto;
+            this.goToIndexToolStripMenuItem.Name = "goToIndexToolStripMenuItem";
+            this.goToIndexToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
+            this.goToIndexToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.goToIndexToolStripMenuItem.Text = "go to index ...";
+            this.goToIndexToolStripMenuItem.Click += new System.EventHandler(this.goToIndexToolStripMenuItem_Click);
+            // 
             // EditorView
             // 
             this.AllowDrop = true;
@@ -553,6 +564,7 @@
         private System.Windows.Forms.ToolStripButton tsbUnformat;
         private System.Windows.Forms.ToolStripButton tsbParagraphMarker;
         private System.Windows.Forms.ToolStripButton tsbGoTo;
+        private System.Windows.Forms.ToolStripMenuItem goToIndexToolStripMenuItem;
     }
 }
 

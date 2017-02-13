@@ -26,16 +26,24 @@ namespace Fileviewer
             this.nudCol = nudCol;
         }
 
-        public void MoveTo()
+        public bool MoveTo()
         {
             int row = Convert.ToInt32(nudRow.Value);
             int col = Convert.ToInt32(nudCol.Value);
             if (row >= 0 && col >= 0)
             {
-                int start = SendMessage(rtbContent.Handle, EM_LINEINDEX, row, 0);
-                rtbContent.SelectionStart = start + col;
-                rtbContent.SelectionLength = 0;
+                try
+                {
+                    int start = SendMessage(rtbContent.Handle, EM_LINEINDEX, row - Properties.Settings.Default.rowStartsWith, 0);
+                    rtbContent.SelectionStart = start + col - Properties.Settings.Default.columnStartsWith;
+                    rtbContent.SelectionLength = 0;
+                    return true;
+                } catch(Exception e)
+                {
+                    MessageBox.Show("Der gesuchte Index existiert nicht!");
+                }
             }
+            return false;
         }
 
         public void keyDownEvents(KeyEventArgs e)
@@ -46,8 +54,10 @@ namespace Fileviewer
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                MoveTo();
-                goToView.Close();
+                if (MoveTo())
+                {
+                    goToView.Close();
+                }
             }
         }
     }

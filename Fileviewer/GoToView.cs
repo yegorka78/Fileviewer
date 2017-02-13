@@ -22,8 +22,10 @@ namespace Fileviewer
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            goToViewController.MoveTo();
-            Close();
+            if (goToViewController.MoveTo())
+            {
+                Close();
+            }
         }
 
         private void GoToView_KeyDown(object sender, KeyEventArgs e)
@@ -44,6 +46,12 @@ namespace Fileviewer
         private void btnOk_KeyDown(object sender, KeyEventArgs e)
         {
             goToViewController.keyDownEvents(e);
+        }
+
+        private void GoToView_Load(object sender, EventArgs e)
+        {
+            nudCol.Minimum = Properties.Settings.Default.columnStartsWith;
+            nudRow.Minimum = Properties.Settings.Default.rowStartsWith;
         }
     }
 }
