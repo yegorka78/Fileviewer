@@ -13,11 +13,13 @@ namespace Fileviewer
     public partial class SearchView : Form
     {
         private SearchViewController searchViewController;
+        private XMLConfiguration settings;
 
-        public SearchView(EditorContent rtbContent)
+        public SearchView(EditorContent rtbContent, XMLConfiguration settings)
         {
             InitializeComponent();
-            searchViewController = new SearchViewController(this, tbSearchString, rtbContent, cbCaseSensitive, lbMatches);
+            this.settings = settings;
+            searchViewController = new SearchViewController(this, tbSearchString, rtbContent, cbCaseSensitive, lbMatches, settings);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

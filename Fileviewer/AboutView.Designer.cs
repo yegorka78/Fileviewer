@@ -44,7 +44,7 @@
             this.lbVersion.Name = "lbVersion";
             this.lbVersion.Size = new System.Drawing.Size(85, 16);
             this.lbVersion.TabIndex = 0;
-            this.lbVersion.Text = "version: 1.1.1";
+            this.lbVersion.Text = "version: 1.1.2";
             // 
             // lbDeveloper
             // 

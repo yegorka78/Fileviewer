@@ -14,12 +14,14 @@ namespace Fileviewer
         private EditorContent rtbContent;
         private NumericUpDown nudRow;
         private NumericUpDown nudCol;
+        private XMLConfiguration settings;
         private static int EM_LINEINDEX = 0xbb;
         [DllImport("user32.dll")]
         extern static int SendMessage(IntPtr hwnd, int message, int wparam, int lparam);
 
-        public GoToViewController(EditorContent rtbContent, GoToView goToView, NumericUpDown nudRow, NumericUpDown nudCol)
+        public GoToViewController(EditorContent rtbContent, GoToView goToView, NumericUpDown nudRow, NumericUpDown nudCol, XMLConfiguration settings)
         {
+            this.settings = settings;
             this.rtbContent = rtbContent;
             this.goToView = goToView;
             this.nudRow = nudRow;
@@ -34,8 +36,8 @@ namespace Fileviewer
             {
                 try
                 {
-                    int start = SendMessage(rtbContent.Handle, EM_LINEINDEX, row - Properties.Settings.Default.rowStartsWith, 0);
-                    rtbContent.SelectionStart = start + col - Properties.Settings.Default.columnStartsWith;
+                    int start = SendMessage(rtbContent.Handle, EM_LINEINDEX, row - Convert.ToInt32(settings.get("rowStartsWith")), 0);
+                    rtbContent.SelectionStart = start + col - Convert.ToInt32(settings.get("columnStartsWith"));
                     rtbContent.SelectionLength = 0;
                     return true;
                 } catch(Exception e)

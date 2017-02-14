@@ -16,13 +16,15 @@ namespace Fileviewer
         private AboutView aboutView;
         private SettingsView settingsView;
         private String fileToOpen;
+        private XMLConfiguration settings;
 
-        public EditorView(EditorModel editorModel, string fileToOpen)
+        public EditorView(EditorModel editorModel, string fileToOpen, XMLConfiguration settings)
         {
             InitializeComponent();
-            editorViewController = new EditorViewController(editorModel, this, tcMain, tsslCTVal, tsslNumCharVal, ofdMain, tsslCurrRowVal, tsslCurrColVal, sfdMain);
+            this.settings = settings;
+            editorViewController = new EditorViewController(editorModel, this, tcMain, tsslCTVal, tsslNumCharVal, ofdMain, tsslCurrRowVal, tsslCurrColVal, sfdMain, settings);
             aboutView = new AboutView();
-            settingsView = new SettingsView();
+            settingsView = new SettingsView(settings);
             this.fileToOpen = fileToOpen;
         }
 
@@ -120,7 +122,7 @@ namespace Fileviewer
         {
             if (tcMain.TabPages.Count > 0)
             {
-                SearchView searchView = new SearchView(tcMain.SelectedTab.Controls[0] as EditorContent);
+                SearchView searchView = new SearchView(tcMain.SelectedTab.Controls[0] as EditorContent, settings);
                 searchView.ShowDialog();                
             }
         }
@@ -184,7 +186,7 @@ namespace Fileviewer
         {
             if (tcMain.TabPages.Count > 0)
             {
-                SearchView searchView = new SearchView(tcMain.SelectedTab.Controls[0] as EditorContent);
+                SearchView searchView = new SearchView(tcMain.SelectedTab.Controls[0] as EditorContent, settings);
                 searchView.ShowDialog();
             }
         }
@@ -224,7 +226,7 @@ namespace Fileviewer
             {
                 EditorContent rtbContent = tcMain.SelectedTab.Controls[0] as EditorContent;
                 rtbContent.Focus();
-                GoToView goToView = new GoToView(rtbContent);
+                GoToView goToView = new GoToView(rtbContent, settings);
                 goToView.ShowDialog();
             }
         }
@@ -235,7 +237,7 @@ namespace Fileviewer
             {
                 EditorContent rtbContent = tcMain.SelectedTab.Controls[0] as EditorContent;
                 rtbContent.Focus();
-                GoToView goToView = new GoToView(rtbContent);
+                GoToView goToView = new GoToView(rtbContent, settings);
                 goToView.ShowDialog();
             }
         }

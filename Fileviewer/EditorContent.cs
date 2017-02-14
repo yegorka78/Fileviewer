@@ -12,16 +12,17 @@ namespace Fileviewer
     {
         private bool paragraphMarkerStatus;
 
-        public EditorContent(String text){
+        public EditorContent(String text, XMLConfiguration settings){
             Text = text;
             ReadOnly = true;
             WordWrap = false;
             Width = 200;
             ScrollBars = RichTextBoxScrollBars.Both;
             Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-            ForeColor = Properties.Settings.Default.defaultFontColor;
-            BackColor = Properties.Settings.Default.backgroundColor;
-            Font = Properties.Settings.Default.defaultFont;
+            FontConverter fontConverter = new FontConverter();
+            ForeColor = ColorTranslator.FromHtml(settings.get("defaultFontColor"));
+            BackColor = ColorTranslator.FromHtml(settings.get("backgroundColor"));
+            Font = fontConverter.ConvertFromString(settings.get("defaultFont")) as Font;
             paragraphMarkerStatus = false;
         }
 

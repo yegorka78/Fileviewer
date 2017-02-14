@@ -13,11 +13,13 @@ namespace Fileviewer
     public partial class SettingsView : Form
     {
         private SettingsViewController settingsViewController;
+        private XMLConfiguration settings;
 
-        public SettingsView()
+        public SettingsView(XMLConfiguration settings)
         {
             InitializeComponent();
-            settingsViewController = new SettingsViewController(this, cdMain, fdMain, nudColCounter, nudRowCounter, lbFont, lbFontColor, lbBackgroundColor, lbPreview, lbMatchColor, tbBase64Header);
+            this.settings = settings;
+            settingsViewController = new SettingsViewController(this, cdMain, fdMain, nudColCounter, nudRowCounter, lbFont, lbFontColor, lbBackgroundColor, lbPreview, lbMatchColor, tbBase64Header, settings);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

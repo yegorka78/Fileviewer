@@ -18,9 +18,11 @@ namespace Fileviewer
         private ToolStripStatusLabel tsslCurrRowVal;
         private ToolStripStatusLabel tsslCurrColVal;
         private SaveFileDialog sfdMain;
+        private XMLConfiguration settings;
 
-        public EditorViewController(EditorModel editorModel, EditorView editorView, TabControl tcMain, ToolStripStatusLabel tsslCTVal, ToolStripStatusLabel tsslNumCharVal, OpenFileDialog ofdMain, ToolStripStatusLabel tsslCurrRowVal, ToolStripStatusLabel tsslCurrColVal, SaveFileDialog sfdMain)
+        public EditorViewController(EditorModel editorModel, EditorView editorView, TabControl tcMain, ToolStripStatusLabel tsslCTVal, ToolStripStatusLabel tsslNumCharVal, OpenFileDialog ofdMain, ToolStripStatusLabel tsslCurrRowVal, ToolStripStatusLabel tsslCurrColVal, SaveFileDialog sfdMain, XMLConfiguration settings)
         {
+            this.settings = settings;
             this.editorModel = editorModel;
             this.editorView = editorView;
             this.tcMain = tcMain;
@@ -47,7 +49,7 @@ namespace Fileviewer
                     tabPage.Tag = file;
                     tabPage.Text = file.getName();
                     tabPage.ToolTipText = file.getPath();
-                    EditorContent rtbContent = new EditorContent(file.getContentVisible());
+                    EditorContent rtbContent = new EditorContent(file.getContentVisible(), settings);
                     rtbContent.SelectionChanged += EditorContent_SelectionChanged;
                     rtbContent.KeyDown += EditorContent_KeyPress;
                     rtbContent.DragEnter += dragEnterFile;
@@ -185,8 +187,8 @@ namespace Fileviewer
         {
             EditorContent rtbContent = tcMain.SelectedTab.Controls[0] as EditorContent;
             int position = rtbContent.SelectionStart;
-            tsslCurrRowVal.Text = (rtbContent.GetLineFromCharIndex(position) + Properties.Settings.Default.rowStartsWith).ToString();
-            tsslCurrColVal.Text = (position - rtbContent.GetFirstCharIndexOfCurrentLine() + Properties.Settings.Default.columnStartsWith).ToString();
+            tsslCurrRowVal.Text = (rtbContent.GetLineFromCharIndex(position) + Convert.ToInt32(settings.get("rowStartsWith"))).ToString();
+            tsslCurrColVal.Text = (position - rtbContent.GetFirstCharIndexOfCurrentLine() + Convert.ToInt32(settings.get("columnStartsWith"))).ToString();
         }
 
         private void EditorContent_SelectionChanged(object sender, EventArgs e)

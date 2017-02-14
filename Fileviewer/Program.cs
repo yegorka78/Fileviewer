@@ -14,14 +14,15 @@ namespace Fileviewer
         [STAThread]
         static void Main(string[] args)
         {
-            string fileToOpen = "";
+            string fileToOpen = String.Empty;
             if (args.Length > 0)
             {
                 fileToOpen = args[0];
             }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new EditorView(new EditorModel(), fileToOpen));
+            XMLConfiguration settings = new XMLConfiguration("H:\\windows\\cpm\\Program\\SFS Fileviewer", "userSettings.xml");
+            Application.Run(new EditorView(new EditorModel(settings), fileToOpen, settings));
         }
     }
 }

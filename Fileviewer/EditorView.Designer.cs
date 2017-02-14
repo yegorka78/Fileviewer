@@ -74,6 +74,7 @@
             this.tsbUnformat = new System.Windows.Forms.ToolStripButton();
             this.tsbParagraphMarker = new System.Windows.Forms.ToolStripButton();
             this.goToIndexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tss2 = new System.Windows.Forms.ToolStripSeparator();
             this.mstrpMain.SuspendLayout();
             this.statStrMain.SuspendLayout();
             this.tsMain.SuspendLayout();
@@ -222,7 +223,7 @@
             // 
             this.tsmiSettings.Image = global::Fileviewer.Properties.Resources.settings;
             this.tsmiSettings.Name = "tsmiSettings";
-            this.tsmiSettings.Size = new System.Drawing.Size(115, 22);
+            this.tsmiSettings.Size = new System.Drawing.Size(152, 22);
             this.tsmiSettings.Text = "settings";
             this.tsmiSettings.Click += new System.EventHandler(this.tsmiSettings_Click);
             // 
@@ -232,14 +233,14 @@
             this.tsmiAbout});
             this.tsmiHelp.Image = global::Fileviewer.Properties.Resources.Help;
             this.tsmiHelp.Name = "tsmiHelp";
-            this.tsmiHelp.Size = new System.Drawing.Size(115, 22);
+            this.tsmiHelp.Size = new System.Drawing.Size(152, 22);
             this.tsmiHelp.Text = "help";
             // 
             // tsmiAbout
             // 
             this.tsmiAbout.Image = global::Fileviewer.Properties.Resources.information;
             this.tsmiAbout.Name = "tsmiAbout";
-            this.tsmiAbout.Size = new System.Drawing.Size(105, 22);
+            this.tsmiAbout.Size = new System.Drawing.Size(152, 22);
             this.tsmiAbout.Text = "about";
             this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
@@ -366,6 +367,7 @@
             this.tss0,
             this.tsbCopy,
             this.tsbPaste,
+            this.tss2,
             this.tsbSearch,
             this.tsbGoTo,
             this.tss1,
@@ -487,6 +489,11 @@
             this.goToIndexToolStripMenuItem.Text = "go to index ...";
             this.goToIndexToolStripMenuItem.Click += new System.EventHandler(this.goToIndexToolStripMenuItem_Click);
             // 
+            // tss2
+            // 
+            this.tss2.Name = "tss2";
+            this.tss2.Size = new System.Drawing.Size(6, 25);
+            // 
             // EditorView
             // 
             this.AllowDrop = true;
@@ -565,6 +572,7 @@
         private System.Windows.Forms.ToolStripButton tsbParagraphMarker;
         private System.Windows.Forms.ToolStripButton tsbGoTo;
         private System.Windows.Forms.ToolStripMenuItem goToIndexToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator tss2;
     }
 }
 

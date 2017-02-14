@@ -21,9 +21,11 @@ namespace Fileviewer
         private Label lbPreview;
         private Label lbMatchColor;
         private TextBox tbBase64Header;
+        private XMLConfiguration settings;
 
-        public SettingsViewController(SettingsView view, ColorDialog cdMain, FontDialog fdMain, NumericUpDown nudColStartsWith, NumericUpDown nudRowStartsWith, Label lbFont, Label lbFontColor, Label lbBackgroundColor, Label lbPreview, Label lbMatchColor, TextBox tbBase64Header)
+        public SettingsViewController(SettingsView view, ColorDialog cdMain, FontDialog fdMain, NumericUpDown nudColStartsWith, NumericUpDown nudRowStartsWith, Label lbFont, Label lbFontColor, Label lbBackgroundColor, Label lbPreview, Label lbMatchColor, TextBox tbBase64Header, XMLConfiguration settings)
         {
+            this.settings = settings;
             this.view = view;
             this.fdMain = fdMain;
             this.cdMain = cdMain;
@@ -39,35 +41,38 @@ namespace Fileviewer
 
         public void save()
         {
-            Properties.Settings.Default.columnStartsWith = Convert.ToInt32(nudColStartsWith.Value);
-            Properties.Settings.Default.rowStartsWith = Convert.ToInt32(nudRowStartsWith.Value);
-            Properties.Settings.Default.defaultFont = lbFont.Tag as Font;
-            Properties.Settings.Default.defaultFontColor = lbFontColor.BackColor;
-            Properties.Settings.Default.backgroundColor = lbBackgroundColor.BackColor;
-            Properties.Settings.Default.matchColor = lbMatchColor.BackColor;
-            Properties.Settings.Default.base64Header = tbBase64Header.Text;
-            Properties.Settings.Default.Save();
+            settings.set("columnStartsWith", nudColStartsWith.Value.ToString());
+            settings.set("rowStartsWith", nudRowStartsWith.Value.ToString());
+            Font font = lbFont.Tag as Font;
+            FontConverter fontConverter = new FontConverter();
+            settings.set("defaultFont", fontConverter.ConvertToString(font));
+            settings.set("defaultFontColor", "#" + lbFontColor.BackColor.R.ToString("X2") + lbFontColor.BackColor.G.ToString("X2") + lbFontColor.BackColor.B.ToString("X2"));
+            settings.set("backgroundColor", "#" + lbBackgroundColor.BackColor.R.ToString("X2") + lbBackgroundColor.BackColor.G.ToString("X2") + lbBackgroundColor.BackColor.B.ToString("X2"));
+            settings.set("matchColor", "#" + lbMatchColor.BackColor.R.ToString("X2") + lbMatchColor.BackColor.G.ToString("X2") + lbMatchColor.BackColor.B.ToString("X2"));
+            settings.set("base64Header", tbBase64Header.Text);
             view.Close();
         }
 
         public void update()
         {
-            nudColStartsWith.Value = Properties.Settings.Default.columnStartsWith;
-            nudRowStartsWith.Value = Properties.Settings.Default.rowStartsWith;
-            lbFont.Tag = Properties.Settings.Default.defaultFont;
-            Font newFont = Properties.Settings.Default.defaultFont;
+            nudColStartsWith.Value = Convert.ToDecimal(settings.get("columnStartsWith"));
+            nudRowStartsWith.Value = Convert.ToDecimal(settings.get("rowStartsWith"));
+            FontConverter fontConverter = new FontConverter();
+            lbFont.Tag = fontConverter.ConvertFromString(settings.get("defaultFont")) as Font;
+            Font newFont = fontConverter.ConvertFromString(settings.get("defaultFont")) as Font;
             lbFont.Text = newFont.FontFamily.Name + "; " + newFont.SizeInPoints.ToString();
-            lbFontColor.BackColor = Properties.Settings.Default.defaultFontColor;
-            lbBackgroundColor.BackColor = Properties.Settings.Default.backgroundColor;
+            lbFontColor.BackColor = ColorTranslator.FromHtml(settings.get("defaultFontColor"));
+            lbBackgroundColor.BackColor = ColorTranslator.FromHtml(settings.get("backgroundColor"));
             lbPreview.BackColor = lbBackgroundColor.BackColor;
             lbPreview.ForeColor = lbFontColor.BackColor;
             lbPreview.Font = lbFont.Tag as Font;
-            lbMatchColor.BackColor = Properties.Settings.Default.matchColor;
-            tbBase64Header.Text = Properties.Settings.Default.base64Header;
+            lbMatchColor.BackColor = ColorTranslator.FromHtml(settings.get("matchColor"));
+            tbBase64Header.Text = settings.get("base64Header");
         }
 
         public void updateDefaultFont()
         {
+            fdMain.Font = lbFont.Tag as Font;
             if (fdMain.ShowDialog() == DialogResult.OK)
             {
                 Font newFont = fdMain.Font;

@@ -15,9 +15,11 @@ namespace Fileviewer
         private EditorContent rtbContent;
         private CheckBox cbCaseSensitive;
         private Label lbMatches;
+        private XMLConfiguration settings;
 
-        public SearchViewController(SearchView searchView, TextBox tbSearchString, EditorContent rtbContent, CheckBox cbCaseSensitive, Label lbMatches)
+        public SearchViewController(SearchView searchView, TextBox tbSearchString, EditorContent rtbContent, CheckBox cbCaseSensitive, Label lbMatches, XMLConfiguration settings)
         {
+            this.settings = settings;
             this.searchView = searchView;
             this.tbSearchString = tbSearchString;
             this.rtbContent = rtbContent;
@@ -50,7 +52,7 @@ namespace Fileviewer
         public void resetRtbContent()
         {
             rtbContent.SelectAll();
-            rtbContent.SelectionBackColor = Properties.Settings.Default.backgroundColor;
+            rtbContent.SelectionBackColor = ColorTranslator.FromHtml(settings.get("backgroundColor"));
         }
 
         public int searchInDocument(String term, int start, bool caseSensitive)
@@ -65,7 +67,7 @@ namespace Fileviewer
             {
                 start = indexToText + tbSearchString.Text.Length;
                 rtbContent.Select(indexToText, tbSearchString.Text.Length);
-                rtbContent.SelectionBackColor = Properties.Settings.Default.matchColor;
+                rtbContent.SelectionBackColor = ColorTranslator.FromHtml(settings.get("matchColor"));
                 return indexToText;
             }
             return -1;

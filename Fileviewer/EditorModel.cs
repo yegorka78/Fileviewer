@@ -13,9 +13,11 @@ namespace Fileviewer
         private List<IView> views;
         private List<Document> files;
         private List<String> availableFileTypes;
+        private XMLConfiguration settings;
 
-        public EditorModel()
+        public EditorModel(XMLConfiguration settings)
         {
+            this.settings = settings;
             views = new List<IView>();
             files = new List<Document>();
             availableFileTypes = new List<string>();
@@ -223,7 +225,7 @@ namespace Fileviewer
 
         private bool isBase64(Document file)
         {
-            if (file.getContent().Contains(Properties.Settings.Default.base64Header))
+            if (file.getContent().Contains(settings.get("base64Header")))
             {
                 return true;
             }
@@ -296,7 +298,7 @@ namespace Fileviewer
 
         private String encodeBase64(String strBase64)
         {
-            strBase64 = strBase64.Replace(Properties.Settings.Default.base64Header, String.Empty);
+            strBase64 = strBase64.Replace(settings.get("base64Header"), String.Empty);
             byte[] data = Convert.FromBase64String(strBase64);
             return Encoding.UTF8.GetString(data);
         }

@@ -13,11 +13,13 @@ namespace Fileviewer
     public partial class GoToView : Form
     {
         private GoToViewController goToViewController;
+        private XMLConfiguration settings;
 
-        public GoToView(EditorContent rtbContent)
+        public GoToView(EditorContent rtbContent, XMLConfiguration settings)
         {
             InitializeComponent();
-            goToViewController = new GoToViewController(rtbContent, this, nudRow, nudCol);
+            this.settings = settings;
+            goToViewController = new GoToViewController(rtbContent, this, nudRow, nudCol, settings);
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -50,8 +52,8 @@ namespace Fileviewer
 
         private void GoToView_Load(object sender, EventArgs e)
         {
-            nudCol.Minimum = Properties.Settings.Default.columnStartsWith;
-            nudRow.Minimum = Properties.Settings.Default.rowStartsWith;
+            nudCol.Minimum = Convert.ToInt32(settings.get("columnStartsWith"));
+            nudRow.Minimum = Convert.ToInt32(settings.get("rowStartsWith"));
         }
     }
 }

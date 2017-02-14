@@ -99,6 +99,7 @@
       <DependentUpon>SearchView.cs</DependentUpon>
     </Compile>
     <Compile Include="SearchViewController.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="SettingsView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +107,7 @@
       <DependentUpon>SettingsView.cs</DependentUpon>
     </Compile>
     <Compile Include="SettingsViewController.cs" />
+    <Compile Include="XMLConfiguration.cs" />
     <EmbeddedResource Include="AboutView.resx">
       <DependentUpon>AboutView.cs</DependentUpon>
     </EmbeddedResource>
